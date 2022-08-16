@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  checks:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: 🛎️ Checkout
@@ -39,7 +39,7 @@ jobs:
         run: npm run test:unit
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.4.0
+        uses: JamesIves/github-pages-deploy-action@v4.4
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: dist # The folder the action should deploy.
