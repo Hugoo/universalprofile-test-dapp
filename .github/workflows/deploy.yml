@@ -1,7 +1,8 @@
-name: build-and-test
+name: Build and deploy to GH Pages
 
 on:
-  pull_request:
+  push:
+    branches: [main]
 
 jobs:
   checks:
@@ -10,7 +11,8 @@ jobs:
       - name: 🛎️ Checkout
         uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
+      - name: 🎛 Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 16.14
           cache: 'npm'
@@ -35,3 +37,9 @@ jobs:
 
       - name: 🎯 Test
         run: npm run test:unit
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.4.0
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
